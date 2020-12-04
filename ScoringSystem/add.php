@@ -1,0 +1,21 @@
+<?php
+    include('includes/connect.php');
+    if(isset($_POST['submit'])){ // Fetching variables of the form which travels in URL
+        $rollNo = $_POST['rollNo'];
+        $sub1 = $_POST['sub1'];
+        $sub2 = $_POST['sub2'];
+        $sub3 = $_POST['sub3'];
+        $sub4 = $_POST['sub4'];
+        $sub5 = $_POST['sub5'];
+        if($rollNo !=''||$sub1 !=''||$sub2 !=''||$sub3 !=''||$sub4 !=''||$sub5 !=''){
+            $percent = (($sub1+$sub2+$sub3+$sub4+$sub5)/500)*100;
+            $query = mysqli_query($con, "insert into scores(rollNo, sub1, sub2, sub3, sub4, sub5, percent) values ('$rollNo','$sub1','$sub2', '$sub3', '$sub4', '$sub5', '$percent')");
+            header('Location: data.php');
+        }
+        else{
+            echo '<script type="text/javascript">';
+            echo ' alert("Some Fields are Blank")';  //not showing an alert box.
+            echo '</script>';
+        }
+    }
+?>
